@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  screener:
+    build: .
+    container_name: binance_screener
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    volumes:
+      - screener_data:/app
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  screener_data:
